@@ -1,26 +1,6 @@
-// ==UserScript==
-// @name         ieyasu tsv
-// @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  try to take over the world!
-// @author       You
-// @match        https://p.ieyasu.co/works*
-// @grant        none
-// ==/UserScript==
-
 (function() {
     'use strict';
-
-    function init() {
-        let parent = document.getElementById('month_apply').parentNode;
-        let button = document.createElement("div");
-        parent.appendChild(button);
-        button.outerHTML = '<div class="floatR" style="margin-right:10px;"><a class="btn" onclick="window.exportTsv()">TSV出力</a></div>';
-    }
-
-    init();
-
-
+    
     const COL_DAY = 0;
     const COL_WORK = 1;
     const COL_START = 2;
@@ -87,5 +67,6 @@
         a.click();
         document.body.removeChild(a);
     }
+    window.exportTsv();
 
 })();
