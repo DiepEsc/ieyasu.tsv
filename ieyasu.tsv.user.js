@@ -1,4 +1,4 @@
-(function() {
+(() => {
 
     documentx = document
     mapCall = (col, fun) => [].map.call(col, fun);
@@ -7,7 +7,7 @@
     getText = element => element.innerText.trim();
     getTextWrap = element => '"'+getText(element)+'"';
 
-    function getCellData(cell, index, timePrefix) {
+    getCellData = (cell, index, timePrefix) => {
         if (index) {
             if (index > 1 && index < 7) {
                 matches = getText(cell).match(/\d+:\d+/);
@@ -19,7 +19,7 @@
         } else return timePrefix + "/" + getText(cell).match(/\d+/)[0];
     }
     timePrefix = byId("select").value.replace("-", "/");
-    rows = mapCall(
+    tsv = mapCall(
         byId("editGraphTable")[chills][0][chills],
         (row, i) => mapCall(
             row[chills],
@@ -27,7 +27,7 @@
         ).join("\t")
     ).join("\n");
     a = documentx.createElement("a");
-    a.href = "data:text/plain;charset=utf-8," + encodeURIComponent(rawData.join(""));
+    a.href = "data:text/plain;charset=utf-8," + encodeURIComponent(tsv);
     a.setAttribute("download", "data.tsv");
     documentx.body.appendChild(a);
     a.click();
