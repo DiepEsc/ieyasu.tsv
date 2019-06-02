@@ -19,7 +19,7 @@ I have tested it only on newest version of Chrome.
   ```
   + Go to, and login into ieyasu.co
   + Open "日次勤怠" tab
-  + Click this button on the book mark bar
+  + Click the `Export tsv` bookmark
 * Using console
   + Copy below script
   + Go to, and login into ieyasu.co
