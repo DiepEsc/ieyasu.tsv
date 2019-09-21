@@ -40,7 +40,7 @@
     window.exportTsv = () => {
         const timePrefix = byId("select").value.replace("-", "/");
         const tsv = mapCall(
-            byId("editGraphTable")[chils][0][chils],
+            byId("editGraphTable")[chils][1][chils],
             (row, i) => mapCall(
                 row[chils],
                 (cell, j) => i == 0 ? getTextWrap(cell) : getCellData(cell, j, timePrefix)

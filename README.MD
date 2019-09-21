@@ -15,7 +15,7 @@ I have tested it only on newest version of Chrome.
   + Set your browser to show the bookmark bar
   + Create new bookmark on the the bookmark bar which title is `Export tsv` or anything and url is 
   ```javascript
-  javascript:(()=>{d=document,m=((e,t)=>[].map.call(e,t)),b=(e=>d.getElementById(e)),c="children",t=(e=>e.innerText.trim()),w=(e=>'"'+t(e)+'"'),g=((e,a,d)=>a?a>1&&a<7&&(r=t(e).match(/\d+:\d+/),r&&r.length)?r[0]:w(e):d+"/"+t(e).match(/\d+/)[0]),h=b("select").value.replace("-","/"),r=m(b("editGraphTable")[c][0][c],(e,t)=>m(e[c],(e,a)=>0==t?w(e):g(e,a,h)).join("\t")).join("\n"),a=d.createElement("a"),a.href="data:text/plain;charset=utf-8,"+encodeURIComponent(r),a.setAttribute("download","data.tsv"),d.body.appendChild(a),a.click(),d.body.removeChild(a);})();
+  javascript:(()=>{d=document,m=((e,t)=>[].map.call(e,t)),b=(e=>d.getElementById(e)),c="children",t=(e=>e.innerText.trim()),w=(e=>'"'+t(e)+'"'),g=((e,a,d)=>a?a>1&&a<7&&(r=t(e).match(/\d+:\d+/),r&&r.length)?r[0]:w(e):d+"/"+t(e).match(/\d+/)[0]),h=b("select").value.replace("-","/"),r=m(b("editGraphTable")[c][1][c],(e,t)=>m(e[c],(e,a)=>0==t?w(e):g(e,a,h)).join("\t")).join("\n"),a=d.createElement("a"),a.href="data:text/plain;charset=utf-8,"+encodeURIComponent(r),a.setAttribute("download","data.tsv"),d.body.appendChild(a),a.click(),d.body.removeChild(a);})();
   ```
   + Go to, and login into ieyasu.co
   + Open "日次勤怠" tab
@@ -28,7 +28,7 @@ I have tested it only on newest version of Chrome.
   + Paste the script there and hit enter.
   
 ```javascript
-(()=>{d=document,m=((e,t)=>[].map.call(e,t)),b=(e=>d.getElementById(e)),c="children",t=(e=>e.innerText.trim()),w=(e=>'"'+t(e)+'"'),g=((e,a,d)=>a?a>1&&a<7&&(r=t(e).match(/\d+:\d+/),r&&r.length)?r[0]:w(e):d+"/"+t(e).match(/\d+/)[0]),h=b("select").value.replace("-","/"),r=m(b("editGraphTable")[c][0][c],(e,t)=>m(e[c],(e,a)=>0==t?w(e):g(e,a,h)).join("\t")).join("\n"),a=d.createElement("a"),a.href="data:text/plain;charset=utf-8,"+encodeURIComponent(r),a.setAttribute("download","data.tsv"),d.body.appendChild(a),a.click(),d.body.removeChild(a);})();
+(()=>{d=document,m=((e,t)=>[].map.call(e,t)),b=(e=>d.getElementById(e)),c="children",t=(e=>e.innerText.trim()),w=(e=>'"'+t(e)+'"'),g=((e,a,d)=>a?a>1&&a<7&&(r=t(e).match(/\d+:\d+/),r&&r.length)?r[0]:w(e):d+"/"+t(e).match(/\d+/)[0]),h=b("select").value.replace("-","/"),r=m(b("editGraphTable")[c][1][c],(e,t)=>m(e[c],(e,a)=>0==t?w(e):g(e,a,h)).join("\t")).join("\n"),a=d.createElement("a"),a.href="data:text/plain;charset=utf-8,"+encodeURIComponent(r),a.setAttribute("download","data.tsv"),d.body.appendChild(a),a.click(),d.body.removeChild(a);})();
 ```
 
 ### With user script engine (TamperMonkey)
@@ -84,7 +84,7 @@ I have tested it only on newest version of Chrome.
     window.exportTsv = () => {
         const timePrefix = byId("select").value.replace("-", "/");
         const tsv = mapCall(
-            byId("editGraphTable")[chils][0][chils],
+            byId("editGraphTable")[chils][1][chils],
             (row, i) => mapCall(
                 row[chils],
                 (cell, j) => i == 0 ? getTextWrap(cell) : getCellData(cell, j, timePrefix)
