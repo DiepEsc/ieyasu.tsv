@@ -1,23 +1,4 @@
-// ==UserScript==
-// @name         ieyasu tsv
-// @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  try to take over the world!
-// @author       You
-// @match        https://p.ieyasu.co/works*
-// @grant        none
-// ==/UserScript==
-(function() {
-    'use strict';
-
-    function init() {
-        let parent = document.getElementById('month_apply').parentNode;
-        let button = document.createElement("div");
-        parent.appendChild(button);
-        button.outerHTML = '<div class="floatR" style="margin-right:10px;"><a class="btn" onclick="window.exportTsv()">TSV出力</a></div>';
-    }
-
-    init();
+(() => {
 
     const documentx = document;
     const mapCall = (col, fun) => [].map.call(col, fun);
@@ -37,10 +18,10 @@
             return getTextWrap(cell);
         } else return timePrefix + "/" + getText(cell).match(/\d+/)[0];
     }
-    window.exportTsv = () => {
+    (() => {
         const timePrefix = byId("select").value.replace("-", "/");
         const tsv = mapCall(
-            byId("editGraphTable")[chils][0][chils],
+            byId("editGraphTable")[chils][1][chils],
             (row, i) => mapCall(
                 row[chils],
                 (cell, j) => i == 0 ? getTextWrap(cell) : getCellData(cell, j, timePrefix)
@@ -52,5 +33,5 @@
         documentx.body.appendChild(a);
         a.click();
         documentx.body.removeChild(a);
-    };
+    })();
 })();
